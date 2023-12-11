@@ -54,17 +54,16 @@ public class TopologicalSorting {
         }
         return this;
     }
-    private TopologicalSorting dfs(List<Integer>[] graph, boolean[] visited, int _u_vertex) {
-        visited[_u_vertex] = true;
-        for (int i = 0, n = graph[_u_vertex].size(); i < n; i++) {
-            int _v_vertex = graph[_u_vertex].get(i);
+    private void dfs(List<Integer>[] graph, boolean[] visited, int _head_rcs_vertex) {
+        visited[_head_rcs_vertex] = true;
+        for (int index = 0, n = graph[_head_rcs_vertex].size(); index < n; index++) {
+            final int _v_vertex = graph[_head_rcs_vertex].get(index);
             if (visited[_v_vertex]) {
                 continue;
             }
             dfs(graph, visited, _v_vertex);
         }
-        result.add(_u_vertex);
-        return this;
+        this.result.add(_head_rcs_vertex);
     }
     public TopologicalSorting autoRunWith(int vertexs, int edges, int [][] adj, Boolean isPrintResult) {
         TopologicalSorting toReturn = INSTANCE
